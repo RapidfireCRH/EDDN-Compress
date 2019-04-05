@@ -78,8 +78,8 @@ namespace EDDNListdldr
                 {
                     try
                     {
-                        Client.DownloadFile(x + "/" + filename7z, x.Replace("http://", "").Replace('.', '_').Replace(':', '_') + ".jsonl.7z");
-                        decompress(x.Replace("http://", "").Replace('.', '_').Replace(':', '_') + ".jsonl.7z", workingdir);
+                        Client.DownloadFile(x + "/" + filename7z, x.Replace("http://", "").Replace("https://","").Replace('.', '_').Replace(':', '_').Replace("/","") + ".jsonl.7z");
+                        decompress(x.Replace("http://", "").Replace("https://", "").Replace('.', '_').Replace(':', '_').Replace("/", "") + ".jsonl.7z", workingdir);
                         delete("*.7z");
                         delete("listener.log", workingdir);
                     }
