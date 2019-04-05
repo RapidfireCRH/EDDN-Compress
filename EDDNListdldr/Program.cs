@@ -7,10 +7,13 @@ namespace EDDNListdldr
 {
     class Program
     {
+        //Args var
+        static bool args_ready = false;//Determines if there was enough info in args to continue processing
+        static bool manual = false;//Manual flag to run a custom date
+        static DateTime manual_date;//date to use for manual flag
+
         static string workingdir = Path.Combine(Directory.GetCurrentDirectory(), "working");
         static string pythonpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Programs\Python\Python37\python.exe");
-        public static bool manual = false;
-        public static DateTime manual_date = DateTime.UtcNow;
         public static string ziploc = "\"C:\\Program Files\\7-Zip\\7z.exe\"";
         static WebClient Client = new WebClient();
         //get date filename
@@ -19,12 +22,31 @@ namespace EDDNListdldr
         static int version_major = 1;
         static int version_minor = 0;
 
+        static void argsproc(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                Console.WriteLine()
+                return;
+            }
+        }
+        static private void usage()
+        {
+            Console.WriteLine("EDDN Compress Version " + version_major + "." + version_minor);
+            Console.WriteLine("Written by RapidfireCRH. https://github.com/RapidfireCRH/EDDN-Compress");
+            Console.WriteLine("Usage:");
+            Console.WriteLine("EDDNListdldr.exe [Destination to save files]");
+            Console.WriteLine("EDDNListdldr.exe [Destination to save files]");
+            Console.WriteLine("EDDNListdldr.exe [Destination to save files]");
+        }
+
+
         static void Main(string[] args)
         {
+            argsproc(args);
             if(args.Length == 1 && args[0].Length > 2 && (args[0].ToLower().Substring(0,2) == "/v" || args[0].ToLower().Substring(0, 2) == "/a"))
             {
-                Console.WriteLine("EDDN Compress Version " + version_major + "." + version_minor);
-                Console.WriteLine("Written by RapidfireCRH. https://github.com/RapidfireCRH/EDDN-Compress");
+                
             }
             //if there is a /M(anuel) flag, move all args over. Otherwise assume SOP.
             Console.WriteLine("EDDN Compress Version "+version_major+"."+version_minor+" - Starting process.");
